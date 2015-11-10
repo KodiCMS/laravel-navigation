@@ -36,8 +36,8 @@ class Navigation
     /**
      * Navigation constructor.
      *
-     * @param array $items
-     * @param string|null  $uri
+     * @param array       $items
+     * @param string|null $uri
      */
     public function __construct(array $items, $uri = null)
     {
@@ -53,9 +53,7 @@ class Navigation
         $this->getRootSection()->sort();
 
         Event::fire('navigation.inited', [$navigation]);
-
     }
-
 
     /**
      * @return Section
@@ -190,7 +188,7 @@ class Navigation
     protected function build(array $items)
     {
         foreach ($items as $section) {
-            if (! isset($section['name'])) {
+            if (!isset($section['name'])) {
                 continue;
             }
 
@@ -203,7 +201,7 @@ class Navigation
                 $sectionObject = $this->findSectionOrCreate($section['name']);
                 $sectionObject->setAttribute(array_except($section, ['children']));
 
-                if (! empty($section['children'])) {
+                if (!empty($section['children'])) {
                     $sectionObject->addPages($section['children']);
                 }
             }

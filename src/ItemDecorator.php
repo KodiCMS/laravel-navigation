@@ -52,7 +52,7 @@ class ItemDecorator
      */
     public function getIcon()
     {
-        if (! isset($this->icon)) {
+        if (!isset($this->icon)) {
             return;
         }
 
@@ -82,7 +82,7 @@ class ItemDecorator
      */
     public function getLabel()
     {
-        if (! is_null($label = $this->getAttribute('label'))) {
+        if (!is_null($label = $this->getAttribute('label'))) {
             return trans($label);
         }
 
@@ -238,6 +238,7 @@ class ItemDecorator
      * @param $arguments array
      *
      * @return mixed
+     *
      * @link http://php.net/manual/en/language.oop5.overloading.php#language.oop5.overloading.methods
      */
     public function __call($name, $arguments)
