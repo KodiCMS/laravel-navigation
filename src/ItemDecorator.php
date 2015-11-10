@@ -3,6 +3,7 @@
 namespace KodiCMS\Navigation;
 
 use Illuminate\Support\Str;
+use KodiCMS\Navigation\Contracts\NavigationSectionInterface;
 
 /**
  * Class ItemDecorator.
@@ -138,11 +139,11 @@ class ItemDecorator
     }
 
     /**
-     * @param Section $section
+     * @param NavigationSectionInterface $section
      *
      * @return $this
      */
-    public function setRootSection(Section &$section)
+    public function setRootSection(NavigationSectionInterface &$section)
     {
         $this->sectionObject = $section;
 

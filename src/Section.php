@@ -2,9 +2,10 @@
 
 namespace KodiCMS\Navigation;
 
-use Countable;
 use Gate;
 use Iterator;
+use Countable;
+use KodiCMS\Navigation\Contracts\NavigationPageInterface;
 use KodiCMS\Navigation\Contracts\NavigationSectionInterface;
 
 class Section extends ItemDecorator implements Countable, Iterator, NavigationSectionInterface
@@ -37,7 +38,7 @@ class Section extends ItemDecorator implements Countable, Iterator, NavigationSe
      *
      * @return static
      */
-    public static function factory(Navigation $navigation, array $data = [])
+    public static function create(Navigation $navigation, array $data = [])
     {
         return new static($navigation, $data);
     }
@@ -52,6 +53,14 @@ class Section extends ItemDecorator implements Countable, Iterator, NavigationSe
     {
         $this->setAttribute($data);
         $this->navigation = $navigation;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isRoot()
+    {
+        return $this->getName() == static::ROOT_NAME;
     }
 
     /**
@@ -73,9 +82,9 @@ class Section extends ItemDecorator implements Countable, Iterator, NavigationSe
     /**
      * @return bool
      */
-    public function isRoot()
+    public function hasPages()
     {
-        return $this->getName() == static::ROOT_NAME;
+        return count($this->pages) > 0;
     }
 
     /**
@@ -84,6 +93,14 @@ class Section extends ItemDecorator implements Countable, Iterator, NavigationSe
     public function getSections()
     {
         return $this->sections;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasSections()
+    {
+        return count($this->sections) > 0;
     }
 
     /**

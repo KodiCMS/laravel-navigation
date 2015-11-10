@@ -52,7 +52,7 @@ class Navigation
         $this->getRootSection()->findActivePageByUri(strtolower($uri));
         $this->getRootSection()->sort();
 
-        Event::fire('navigation.inited', [$navigation]);
+        Event::fire('navigation.inited', [$this]);
     }
 
     /**
@@ -80,7 +80,7 @@ class Navigation
             $parent = $this->getRootSection();
         }
 
-        $section = new Section([
+        $section = new Section($this, [
             'name'     => $name,
             'priority' => $priority,
         ]);
@@ -175,6 +175,14 @@ class Navigation
     }
 
     /**
+     * @return Page
+     */
+    public function getCurrentPage()
+    {
+        return $this->currentPage;
+    }
+
+    /**
      * @param Page $page
      */
     public function setCurrentPage(Page &$page)
@@ -227,7 +235,7 @@ class Navigation
      */
     protected function createRootSection()
     {
-        $this->rootSection = new Section([
+        $this->rootSection = new Section($this, [
             'name' => Section::ROOT_NAME,
         ]);
     }
