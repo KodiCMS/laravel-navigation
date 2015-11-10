@@ -1,0 +1,20 @@
+{
+  "name": "kodicms/laravel-navigation",
+  "license": "GNU GENERAL PUBLIC LICENSE",
+  "authors": [
+    {
+      "name": "Pavel Buchnev",
+      "email": "butschster@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.5.9",
+    "laravel/framework": "5.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "KodiCMS\\Navigation\\": "src/"
+    }
+  },
+  "minimum-stability": "stable"
+}
