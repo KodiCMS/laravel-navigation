@@ -2,9 +2,9 @@
 
 namespace KodiCMS\Navigation;
 
+use Countable;
 use Gate;
 use Iterator;
-use Countable;
 use KodiCMS\Navigation\Contracts\NavigationSectionInterface;
 
 class Section extends ItemDecorator implements Countable, Iterator, NavigationSectionInterface
@@ -78,7 +78,6 @@ class Section extends ItemDecorator implements Countable, Iterator, NavigationSe
         return $this->getName() == static::ROOT_NAME;
     }
 
-
     /**
      * @return Section[]
      */
@@ -143,7 +142,7 @@ class Section extends ItemDecorator implements Countable, Iterator, NavigationSe
         intval($priority);
 
         $permissions = $page->getPermissions();
-        if (! empty($permissions) and Gate::denies('navigation-page-view', $page)) {
+        if (!empty($permissions) and Gate::denies('navigation-page-view', $page)) {
             return $this;
         }
 
@@ -191,7 +190,7 @@ class Section extends ItemDecorator implements Countable, Iterator, NavigationSe
 
             $uri = substr($currentUri, $len);
             $pos = strpos($uri, $url);
-            if (! empty($url) and $pos !== false and $pos < 5) {
+            if (!empty($url) and $pos !== false and $pos < 5) {
                 $page->setStatus(true);
 
                 $this->navigation->setCurrentPage($page);
@@ -228,7 +227,7 @@ class Section extends ItemDecorator implements Countable, Iterator, NavigationSe
 
         foreach ($this->getSections() as $section) {
             $found = $section->findSection($name);
-            if (! is_null($found)) {
+            if (!is_null($found)) {
                 return $found;
             }
         }
@@ -251,7 +250,7 @@ class Section extends ItemDecorator implements Countable, Iterator, NavigationSe
 
         foreach ($this->getSections() as $section) {
             $found = $section->findPageByUri($uri);
-            if (! is_null($found)) {
+            if (!is_null($found)) {
                 return $found;
             }
         }
@@ -290,7 +289,7 @@ class Section extends ItemDecorator implements Countable, Iterator, NavigationSe
      *
      *     echo count($result);
      *
-     * @return  int
+     * @return int
      */
     public function count()
     {
@@ -302,7 +301,7 @@ class Section extends ItemDecorator implements Countable, Iterator, NavigationSe
      *
      *     echo key($result);
      *
-     * @return  int
+     * @return int
      */
     public function key()
     {
@@ -314,7 +313,7 @@ class Section extends ItemDecorator implements Countable, Iterator, NavigationSe
      *
      *     echo key($result);
      *
-     * @return  int
+     * @return int
      */
     public function current()
     {
@@ -326,7 +325,7 @@ class Section extends ItemDecorator implements Countable, Iterator, NavigationSe
      *
      *     next($result);
      *
-     * @return  $this
+     * @return $this
      */
     public function next()
     {
@@ -338,7 +337,7 @@ class Section extends ItemDecorator implements Countable, Iterator, NavigationSe
      *
      *     prev($result);
      *
-     * @return  $this
+     * @return $this
      */
     public function prev()
     {
@@ -350,7 +349,7 @@ class Section extends ItemDecorator implements Countable, Iterator, NavigationSe
      *
      *     rewind($result);
      *
-     * @return  $this
+     * @return $this
      */
     public function rewind()
     {
@@ -362,7 +361,7 @@ class Section extends ItemDecorator implements Countable, Iterator, NavigationSe
      *
      * [!!] This method is only used internally.
      *
-     * @return  bool
+     * @return bool
      */
     public function valid()
     {
