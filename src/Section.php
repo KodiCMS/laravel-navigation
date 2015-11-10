@@ -159,7 +159,7 @@ class Section extends ItemDecorator implements Countable, Iterator, NavigationSe
         intval($priority);
 
         $permissions = $page->getPermissions();
-        if (!empty($permissions) and Gate::denies('navigation-page-view', $page)) {
+        if (! empty($permissions) and Gate::denies('navigation-page-view', $page)) {
             return $this;
         }
 
@@ -207,7 +207,7 @@ class Section extends ItemDecorator implements Countable, Iterator, NavigationSe
 
             $uri = substr($currentUri, $len);
             $pos = strpos($uri, $url);
-            if (!empty($url) and $pos !== false and $pos < 5) {
+            if (! empty($url) and $pos !== false and $pos < 5) {
                 $page->setStatus(true);
 
                 $this->navigation->setCurrentPage($page);
@@ -244,7 +244,7 @@ class Section extends ItemDecorator implements Countable, Iterator, NavigationSe
 
         foreach ($this->getSections() as $section) {
             $found = $section->findSection($name);
-            if (!is_null($found)) {
+            if (! is_null($found)) {
                 return $found;
             }
         }
@@ -267,7 +267,7 @@ class Section extends ItemDecorator implements Countable, Iterator, NavigationSe
 
         foreach ($this->getSections() as $section) {
             $found = $section->findPageByUri($uri);
-            if (!is_null($found)) {
+            if (! is_null($found)) {
                 return $found;
             }
         }

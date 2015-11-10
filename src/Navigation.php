@@ -196,7 +196,7 @@ class Navigation
     protected function build(array $items)
     {
         foreach ($items as $section) {
-            if (!isset($section['name'])) {
+            if (! isset($section['name'])) {
                 continue;
             }
 
@@ -209,7 +209,7 @@ class Navigation
                 $sectionObject = $this->findSectionOrCreate($section['name']);
                 $sectionObject->setAttribute(array_except($section, ['children']));
 
-                if (!empty($section['children'])) {
+                if (! empty($section['children'])) {
                     $sectionObject->addPages($section['children']);
                 }
             }
