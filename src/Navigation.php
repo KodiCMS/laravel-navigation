@@ -49,10 +49,10 @@ class Navigation
 
         $this->build($items);
 
+        Event::fire('navigation.inited', [$this]);
+
         $this->getRootSection()->findActivePageByUri(strtolower($uri));
         $this->getRootSection()->sort();
-
-        Event::fire('navigation.inited', [$this]);
     }
 
     /**
