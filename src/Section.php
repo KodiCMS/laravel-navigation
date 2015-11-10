@@ -188,45 +188,45 @@ class Section extends ItemDecorator implements Countable, Iterator, NavigationSe
      */
     public function findActivePageByUri($currentUri)
     {
-        $found = false;
-        $adminDirName = url('admin');
+        $foundPages = [];
+        $siteUrl = url();
 
-        foreach ($this->getPages() as $page) {
+        $pages = $this->getPages();
+
+        foreach ($pages as $page) {
             $url = $page->getUrl();
-            $len = strpos($url, $adminDirName);
+            $len = strpos($url, $siteUrl);
             if ($len !== false) {
-                $len += strlen($adminDirName);
+                $len += strlen($siteUrl);
             }
 
             $url = substr($url, $len);
 
-            $len = strpos($currentUri, $adminDirName);
+            $len = strpos($currentUri, $siteUrl);
             if ($len !== false) {
-                $len += strlen($adminDirName);
+                $len += strlen($siteUrl);
             }
 
-            $uri = substr($currentUri, $len);
-            $pos = strpos($uri, $url);
-            if (! empty($url) and $pos !== false and $pos < 5) {
-                $page->setStatus(true);
+            if(! empty($url)) {
+                $uri = substr($currentUri, $len);
+                $pos = strpos($uri, $url);
 
-                $this->navigation->setCurrentPage($page);
-
-                $found = true;
-                break;
-            }
-        }
-
-        if ($found === false) {
-            foreach ($this->getSections() as $section) {
-                $found = $section->findActivePageByUri($currentUri);
-                if ($found !== false) {
-                    return $found;
+                if ($pos !== false) {
+                    $foundPages[strlen(substr($uri, strlen($url)))] = $page;
+                    $page->setStatus(true);
                 }
             }
         }
 
-        return $found;
+        if(count($foundPages) > 0) {
+            ksort($foundPages);
+            $page = array_shift($foundPages);
+            $this->navigation->setCurrentPage($page);
+        }
+
+        foreach ($this->getSections() as $section) {
+            $section->findActivePageByUri($currentUri);
+        }
     }
 
     /**
