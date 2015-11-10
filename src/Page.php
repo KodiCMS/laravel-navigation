@@ -16,7 +16,7 @@ class Page extends ItemDecorator implements NavigationPageInterface
     {
         parent::__set($name, $value);
 
-        if (!is_null($this->sectionObject)) {
+        if (! is_null($this->sectionObject)) {
             $this->getRootSection()->update();
         }
 

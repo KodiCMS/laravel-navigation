@@ -53,7 +53,7 @@ class ItemDecorator
      */
     public function getIcon()
     {
-        if (!isset($this->icon)) {
+        if (! isset($this->icon)) {
             return;
         }
 
@@ -83,7 +83,7 @@ class ItemDecorator
      */
     public function getLabel()
     {
-        if (!is_null($label = $this->getAttribute('label'))) {
+        if (! is_null($label = $this->getAttribute('label'))) {
             return trans($label);
         }
 
@@ -95,7 +95,7 @@ class ItemDecorator
      */
     public function getTitle()
     {
-        if (!is_null($title = $this->getAttribute('title'))) {
+        if (! is_null($title = $this->getAttribute('title'))) {
             return $title;
         }
 
