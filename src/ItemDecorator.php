@@ -93,6 +93,18 @@ class ItemDecorator
     /**
      * @return string
      */
+    public function getTitle()
+    {
+        if (!is_null($title = $this->getAttribute('title'))) {
+            return $title;
+        }
+
+        return $this->getLabel();
+    }
+
+    /**
+     * @return string
+     */
     public function getUrl()
     {
         return $this->getAttribute('url');
