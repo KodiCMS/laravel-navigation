@@ -189,7 +189,7 @@ class Section extends ItemDecorator implements Countable, Iterator, NavigationSe
     public function findActivePageByUri($currentUri)
     {
         $foundPages = [];
-        $siteUrl = url();
+        $siteUrl = url()->current();
 
         $pages = $this->getPages();
 
