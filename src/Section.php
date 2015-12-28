@@ -207,7 +207,7 @@ class Section extends ItemDecorator implements Countable, Iterator, NavigationSe
                 $len += strlen($siteUrl);
             }
 
-            if(! empty($url)) {
+            if (! empty($url)) {
                 $uri = substr($currentUri, $len);
                 $pos = strpos($uri, $url);
 
@@ -218,7 +218,7 @@ class Section extends ItemDecorator implements Countable, Iterator, NavigationSe
             }
         }
 
-        if(count($foundPages) > 0) {
+        if (count($foundPages) > 0) {
             ksort($foundPages);
             $page = array_shift($foundPages);
             $this->navigation->setCurrentPage($page);
