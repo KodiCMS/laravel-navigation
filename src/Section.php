@@ -114,9 +114,7 @@ class Section extends ItemDecorator implements Countable, Iterator, NavigationSe
             if (isset($page['children'])) {
                 $section = $this->navigation->findSectionOrCreate($page['name'], $this);
 
-                if (isset($page['icon'])) {
-                    $section->setIcon($page['icon']);
-                }
+                $section->setAttribute(array_except($page, 'children'));
 
                 if (count($page['children']) > 0) {
                     $section->addPages($page['children']);
