@@ -120,7 +120,7 @@ class Section extends ItemDecorator implements Countable, Iterator, NavigationSe
                     $section->addPages($page['children']);
                 }
             } else {
-                $newPage = new Page($page)
+                $newPage = new Page($page);
                 $this->addPage($newPage);
             }
         }
